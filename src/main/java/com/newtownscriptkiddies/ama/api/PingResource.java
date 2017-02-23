@@ -1,4 +1,4 @@
-package com.newtownscriptkiddies.fwphotline.api;
+package com.newtownscriptkiddies.ama.api;
 
 import com.codahale.metrics.annotation.Timed;
 import javax.ws.rs.GET;
