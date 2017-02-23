@@ -1,6 +1,6 @@
 package com.newtownscriptkiddies.ama;
 
-import com.newtownscriptkiddies.ama.api.PingResource;
+import com.newtownscriptkiddies.ama.resources.QuestionsResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -24,8 +24,9 @@ public class AmaApplication extends Application<AmaConfiguration> {
     @Override
     public void run(final AmaConfiguration configuration,
                     final Environment environment) {
-        final PingResource pingResource = new PingResource();
-        environment.jersey().register(pingResource);
+        final QuestionsResource questionsResource = new QuestionsResource();
+
+        environment.jersey().register(questionsResource);
     }
 
 }
