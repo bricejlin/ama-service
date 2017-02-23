@@ -3,9 +3,8 @@
 # This triggers the /admin behaviour of Dropwizard
 
 server:
-  applicationConnectors:
-  - type: http
-    port: 8080
-  adminConnectors:
-  - type: http
+  type: simple
+  applicationContextPath: /
+  connector:
+    type: http
     port: 8080
