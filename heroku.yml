@@ -1,12 +1,14 @@
 # Define the HTTP settings
 # Heroku demands a single port of 8080 for resources
 # This triggers the /admin behaviour of Dropwizard
-http:
-  port: 8080
-  adminPort: 8080
 
-  adminUsername: admin
-  adminPassword: password
+server:
+  applicationConnectors:
+  - type: http
+    port: 8080
+  adminConnectors:
+  - type: http
+    port: 8080
 
 logging:
 
