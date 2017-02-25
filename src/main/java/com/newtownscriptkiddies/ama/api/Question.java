@@ -1,19 +1,22 @@
 package com.newtownscriptkiddies.ama.api;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
+import java.util.UUID;
+import org.hibernate.validator.constraints.NotEmpty;
 
 public class Question {
+    @NotEmpty
     private String text;
+    @NotEmpty
     private String category;
-    private List<String> tags;
+    private UUID id;
 
     public Question() {}
 
-    public Question(String text, String category, List<String> tags) {
+    public Question(UUID id, String text, String category) {
+        this.id = id;
         this.text = text;
         this.category = category;
-        this.tags = tags;
     }
 
     @JsonProperty
@@ -37,12 +40,7 @@ public class Question {
     }
 
     @JsonProperty
-    public List<String> getTags() {
-        return tags;
-    }
-
-    @JsonProperty
-    public void setTags(List<String> tags) {
-        this.tags = tags;
+    public UUID getId() {
+        return id;
     }
 }
