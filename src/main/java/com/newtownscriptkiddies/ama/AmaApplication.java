@@ -1,7 +1,9 @@
 package com.newtownscriptkiddies.ama;
 
 import com.newtownscriptkiddies.ama.db.dao.QuestionDAO;
+import com.newtownscriptkiddies.ama.db.dao.SubscriptionDAO;
 import com.newtownscriptkiddies.ama.resources.QuestionsResource;
+import com.newtownscriptkiddies.ama.resources.SubscriptionsResource;
 import io.dropwizard.Application;
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Bootstrap;
@@ -38,12 +40,14 @@ public class AmaApplication extends Application<AmaConfiguration> {
         final DBIFactory factory = new DBIFactory();
         final DBI jdbi = factory.build(env, config.getDataSourceFactory(), "postgresql");
         final QuestionDAO questionDAO = jdbi.onDemand(QuestionDAO.class);
+        final SubscriptionDAO subscriptionDAO = jdbi.onDemand(SubscriptionDAO.class);
 
         final FilterRegistration.Dynamic cors = env.servlets().addFilter("CORS", CrossOriginFilter.class);
         cors.setInitParameter("allowedOrigins", "*");
         cors.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
 
         env.jersey().register(new QuestionsResource(questionDAO));
+        env.jersey().register(new SubscriptionsResource(subscriptionDAO));
     }
 
 }
